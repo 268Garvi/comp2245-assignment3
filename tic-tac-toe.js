@@ -45,14 +45,35 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   
     function announceWinner() {
-        var status = document.getElementById('status');
-        status.textContent = `Congratulations! ${turn} is the Winner!`;
-        status.classList.add('you-won');
-      }
-      
+      var status = document.getElementById('status');
+      status.textContent = `Congratulations! ${turn} is the Winner!`;
+      status.classList.add('you-won');
+    }
+  
     function handleSquareHover(index) {
       squares[index].classList.toggle('hover');
     }
+  
+    // Get the button with the class 'btn'
+    var newGameButton = document.querySelector('.btn');
+  
+    // Add click event listener to the button with the class 'btn'
+    newGameButton.addEventListener('click', function() {
+      // Reset game state
+      game = Array(squares.length).fill(null);
+      turn = 'X';
+      gameWon = false;
+  
+      // Update UI
+      for (let i = 0; i < squares.length; i++) {
+        squares[i].textContent = '';
+        squares[i].classList.remove('X', 'O');
+      }
+  
+      var status = document.getElementById('status');
+      status.textContent = 'Move your mouse over a square and click to play an X or an O.';
+      status.classList.remove('you-won');
+    });
   
     for (let i = 0; i < squares.length; i++) {
       squares[i].classList.add('square');
