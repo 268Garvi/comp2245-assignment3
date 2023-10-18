@@ -20,12 +20,26 @@ document.addEventListener('DOMContentLoaded', function() {
       turn = turn === 'X' ? 'O' : 'X';
     }
   
+    function handleSquareHover(index) {
+      squares[index].classList.toggle('hover');
+    }
+  
     for (let i = 0; i < squares.length; i++) {
       squares[i].classList.add('square');
       squares[i].addEventListener('click', function(e) {
         var index = Array.prototype.indexOf.call(squares, e.target);
         updateGameState(index);
         renderSquare(index);
+      });
+      
+      squares[i].addEventListener('mouseover', function(e) {
+        var index = Array.prototype.indexOf.call(squares, e.target);
+        handleSquareHover(index);
+      });
+  
+      squares[i].addEventListener('mouseout', function(e) {
+        var index = Array.prototype.indexOf.call(squares, e.target);
+        handleSquareHover(index);
       });
     }
   });
